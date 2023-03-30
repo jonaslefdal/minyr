@@ -15,6 +15,7 @@
 !go.mod
 
 !kjevik-temp-celsius-20220318-20230318.csv
+!kjevik-temp-fahr-20220318-20230318.csv
 
 !README.md
 !LICENSE
