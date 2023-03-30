@@ -36,14 +36,7 @@ func main() {
 				}
 			}
 		case "average":
-			fmt.Println("Please select in degrees Celsius or Fahrenheit? (c/f)")
-			scanner.Scan()
-			input = scanner.Text()
-			if strings.ToLower(input) == "c" {
-				averageTemp("c")
-			} else if strings.ToLower(input) == "f" {
-				averageTemp("f")
-			}
+			averageTemp()
 		default:
 			fmt.Println("Please select convert, average or exit:")
 		}
@@ -86,36 +79,36 @@ func convertCelsiusToFahrenheit() {
 	fmt.Println("Conversion completed successfully.\nResults saved in kjevik-temp-fahr-20220318-20230318.csv.")
 }
 
-func averageTempCelcsius() {
-	fmt.Println("Finding the average temp in Celsius")
-	
+func averageTemp() {
+	fmt.Println("Please select in degrees Celsius or Fahrenheit? (c/f)")
 	count := 0
 	sum := 0
 
-	// Calculate the average
-	avg := yr.AverageTemp(sum, float64(count))
+	var input string
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		input = scanner.Text()
 
-	fmt.Printf("Average: %.2f\n", avg)
-}
+			if strings.ToLower(input) == "c" {
+				fmt.Println("Finding the average temp in Celsius")
+				avg := yr.AverageTemp(sum, float64(count))
+				fmt.Printf("Average: %.2f\n", avg)
+				fmt.Println("Please select (c/f) for new average or (q/exit) to exit")
 
-func averageTemp(input string) {
+			} else if strings.ToLower(input) == "f" {
 
-	count := 0
-	sum := 0
-	switch input {
-	case "c":
-		fmt.Println("Finding the average temp in Celsius")
-		avg := yr.AverageTemp(sum, float64(count))
-		fmt.Printf("Average: %.2f\n", avg)
+				fmt.Println("Finding the average temp in Fahrenheit")
+				// Calculate the average
+				avg := yr.AverageTemp(sum, float64(count))
+				avgFahr := conv.CelsiusToFahrenheit(avg)
+				fmt.Printf("Average: %.2f\n", avgFahr)
 
-	case "f":
-		fmt.Println("Finding the average temp in Fahrenheit")
-		// Calculate the average
-		avg := yr.AverageTemp(sum, float64(count))
-		avgFahr := conv.CelsiusToFahrenheit(avg)
-		fmt.Printf("Average: %.2f\n", avgFahr)
-	default:
-		fmt.Println("Please select (c/f)):")
-		averageTemp(input)
+			} else {
+				fmt.Println("Please select (c/f) or (q/exit)")
+			}
+			if strings.ToLower(input) == "q" || strings.ToLower(input) == "exit" {
+				fmt.Println("exit")
+				os.Exit(0)
+		}
 	}
 }
