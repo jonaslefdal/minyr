@@ -30,11 +30,11 @@ func TestCelsiusToFahrenheitLine(t *testing.T) {
 func TestCountLines(t *testing.T) {
 
 	type test struct {
-		input int
+		input string
 		want  int
 	}
 	tests := []test{
-		{input: 16756, want: 16756},
+		{input: "/home/BRUKERNAVN/minyr/kjevik-temp-fahr-20220318-20230318.csv", want: 16756},
 	}
 	for _, tc := range tests {
 		got := CountLines(tc.input)

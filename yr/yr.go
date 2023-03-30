@@ -46,9 +46,9 @@ func CelsiusToFahrenheitLine(line string) (string, error) {
 
 	//return "Kjevik;SN39040;18.03.2022 01:50;42.8", err
 }
-func CountLines(value int) int {
+func CountLines(input string) int {
 
-	const fileName = "/home/BRUKERNAVN/minyr/kjevik-temp-fahr-20220318-20230318.csv"
+	var fileName = input
 
 	file, err := os.Open(fileName)
 	if err != nil {
