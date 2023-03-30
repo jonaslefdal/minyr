@@ -40,9 +40,9 @@ func main() {
 			scanner.Scan()
 			input = scanner.Text()
 			if strings.ToLower(input) == "c" {
-				averageTempCelcsius()
+				averageTemp("c")
 			} else if strings.ToLower(input) == "f" {
-				averageTempFahr()
+				averageTemp("f")
 			}
 		default:
 			fmt.Println("Please select convert, average or exit:")
@@ -97,15 +97,25 @@ func averageTempCelcsius() {
 
 	fmt.Printf("Average: %.2f\n", avg)
 }
-func averageTempFahr() {
-	fmt.Println("Finding the average temp in Fahrenheit")
-	
+
+func averageTemp(input string) {
+
 	count := 0
 	sum := 0
+	switch input {
+	case "c":
+		fmt.Println("Finding the average temp in Celsius")
+		avg := yr.AverageTemp(sum, float64(count))
+		fmt.Printf("Average: %.2f\n", avg)
 
-	// Calculate the average
-	avg := yr.AverageTemp(sum, float64(count))
-	avgFahr := conv.CelsiusToFahrenheit(avg)
-
-	fmt.Printf("Average: %.2f\n", avgFahr)
+	case "f":
+		fmt.Println("Finding the average temp in Fahrenheit")
+		// Calculate the average
+		avg := yr.AverageTemp(sum, float64(count))
+		avgFahr := conv.CelsiusToFahrenheit(avg)
+		fmt.Printf("Average: %.2f\n", avgFahr)
+	default:
+		fmt.Println("Please select (c/f)):")
+		averageTemp(input)
+	}
 }
