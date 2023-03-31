@@ -32,7 +32,7 @@ func CelsiusToFahrenheitLine(line string) (string, error) {
 
 	if len(dividedString) == 4 {
 
-		if dividedString[3] == "" {
+		if strings.HasPrefix(dividedString[0],"Data er gyldig") {
 			return "Data er basert paa gyldig data (per 18.03.2023) (CCBY 4.0) fra Meteorologisk institutt (MET);endringen er gjort av Jonas Lefdal", err
 		}
 		
@@ -86,7 +86,7 @@ func AverageTemp(sum int, count float64) float64 {
 		}
 		dividedString := strings.Split(scanner.Text(), ";")
 		
-		if dividedString[3] == "Lufttemperatur" || dividedString[3] == "" {
+		if dividedString[3] == "Lufttemperatur" || strings.HasPrefix(dividedString[0],"Data er gyldig") {
 			continue // skip
 		}
 
