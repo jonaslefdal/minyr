@@ -33,8 +33,9 @@ func CelsiusToFahrenheitLine(line string) (string, error) {
 	if len(dividedString) == 4 {
 
 		if dividedString[3] == "" {
-			return line + " Endret av Jonas Lefdal", err
+			return "Data er basert paa gyldig data (per 18.03.2023) (CCBY 4.0) fra Meteorologisk institutt (MET);endringen er gjort av Jonas Lefdal", err
 		}
+		
 		dividedString[3], err = CelsiusToFahrenheitString(dividedString[3])
 		if err != nil {
 			return "", err
@@ -100,3 +101,4 @@ func AverageTemp(sum int, count float64) float64 {
 	return avg
 
 }
+
