@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"minyr/yr"
+	"github.com/jonaslefdal/minyr/yr"
 	"github.com/jonaslefdal/funtemps/conv"
 )
 
